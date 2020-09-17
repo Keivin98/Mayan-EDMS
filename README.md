@@ -87,15 +87,15 @@ at: https://docs.mayan-edms.com/parts/installation.html
 - [Videos](https://www.youtube.com/channel/UCJOOXHP1MJ9lVA7d8ZTlHPw)
 
 <h2 align="center"> Assigning applications to reviewers </h2>
-The process of assigning applications to reviewers should go through the following steps. 
-1) Press documents, on the side menu. 
-2) Click on New document. 
-  - Document Type : Default
-  - Cabinets to assign: empty. 
-  - Drag and drop all the applicants' documents. 
-3) Go to All Documents, from the side menu again. 
-4) Select all the documents you want to assign to reviewers.
-5) From the Bulk Actions press on : "Assign reviewers to applications"
-6) Now you have to add all of the reviewers that you want to assign applications to. 
-After that, the application documents will be spread to the reviewers' cabinets and they can check, give comments and scores from there. 
-Every document will be given to 3 reviewers only, in a random way to ensure that the reviewers won't be overloaded. 
+The process of assigning applications to reviewers should go through the following steps. \n
+1) Press documents, on the side menu. \n
+2) Click on New document. \n
+  - Document Type : Default\n
+  - Cabinets to assign: empty.\n 
+  - Drag and drop all the applicants' documents.\n 
+3) Go to All Documents, from the side menu again. \n
+4) Select all the documents you want to assign to reviewers.\n
+5) From the Bulk Actions press on : "Assign reviewers to applications"\n
+6) Now you have to add all of the reviewers that you want to assign applications to.\n 
+After that, the application documents will be spread to the reviewers' cabinets and they can check, give comments and scores from there.\n 
+Every document will be given to 3 reviewers only, in a random way to ensure that the reviewers won't be overloaded. \n
