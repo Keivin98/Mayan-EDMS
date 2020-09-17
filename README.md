@@ -68,6 +68,7 @@ and working before attempting to install Mayan EDMS.
 For the complete set of installation instructions visit the Mayan EDMS documentation
 at: https://docs.mayan-edms.com/parts/installation.html
 
+
 <h2 align="center">Hardware requirements</h2>
 
 - 2 Gigabytes of RAM (1 Gigabyte if OCR is turned off).
@@ -85,3 +86,16 @@ at: https://docs.mayan-edms.com/parts/installation.html
 - [Translations](https://www.transifex.com/rosarior/mayan-edms/)
 - [Videos](https://www.youtube.com/channel/UCJOOXHP1MJ9lVA7d8ZTlHPw)
 
+<h2 align="center"> Assigning applications to reviewers </h2>
+The process of assigning applications to reviewers should go through the following steps. 
+1) Press documents, on the side menu. 
+2) Click on New document. 
+  - Document Type : Default
+  - Cabinets to assign: empty. 
+  - Drag and drop all the applicants' documents. 
+3) Go to All Documents, from the side menu again. 
+4) Select all the documents you want to assign to reviewers.
+5) From the Bulk Actions press on : "Assign reviewers to applications"
+6) Now you have to add all of the reviewers that you want to assign applications to. 
+After that, the application documents will be spread to the reviewers' cabinets and they can check, give comments and scores from there. 
+Every document will be given to 3 reviewers only, in a random way to ensure that the reviewers won't be overloaded. 
