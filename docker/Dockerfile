@@ -62,12 +62,12 @@ apt-get update \
 ; fi
 
 ####
-# builder_image - This image builds the Python package and is discarded afterwards
-#                 only the build artifact is carried over to the next image.
+# Final image - This image builds the Python package (development mode)
+# the src directory can be mounted and packages can be redeployed
 ####
 
 # Reuse image
-FROM base_image as builder_image
+FROM base_image 
 
 # Python libraries caching
 ARG PIP_INDEX_URL
@@ -137,30 +137,23 @@ RUN set -a \
 
 COPY --chown=mayan:mayan requirements/testing-base.txt "${PROJECT_INSTALL_DIR}"
 
-####
-# Final image - base_image + builder_image artifact (Mayan install directory)
-####
-
-FROM base_image
-
-COPY --from=builder_image --chown=mayan:mayan "${PROJECT_INSTALL_DIR}/" "${PROJECT_INSTALL_DIR}/"
-
 USER root
 
 COPY docker/rootfs /
 
 VOLUME ["/var/lib/mayan"]
 
-ENTRYPOINT ["entrypoint.sh"]
+#ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 8000
-CMD ["run_all"]
+#CMD ["run_all"]
 
 RUN ${PROJECT_INSTALL_DIR}/bin/mayan-edms.py platformtemplate supervisord_docker > /etc/supervisor/conf.d/mayan.conf \
 && apt-get clean autoclean \
 && apt-get autoremove --purge -y \
 && rm -rf /var/lib/apt/lists/* \
 && rm -f /var/cache/apt/archives/*.deb \
+&& rm  -rf /src \
 # Remove temporary files owned by root from the platformtemplate step
 && rm /tmp/* \
 # Keep displaying log messages to stdout

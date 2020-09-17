@@ -1,4 +1,5 @@
 import logging
+import random 
 
 from django.contrib import messages
 from django.template import RequestContext
@@ -276,33 +277,41 @@ class DocumentAddToCabinetView(MultipleObjectFormActionView):
 
     def object_action(self, form, instance):
         cabinet_membership = instance.cabinets.all()
-
+        num_cabinets_checked = len(form.cleaned_data['cabinets'])
+        if num_cabinets_checked > 3 : #if we are assigning applications to more than one reviewer
+            randomlist = random.sample(range(num_cabinets_checked), 3) #pick 3 of them
+        else: #otherwise
+            randomlist = range(num_cabinets_checked) #pick all of them
+        count = 0
+        
         for cabinet in form.cleaned_data['cabinets']:
-            AccessControlList.objects.check_access(
-                obj=cabinet, permissions=(permission_cabinet_add_document,),
-                user=self.request.user
-            )
-            if cabinet in cabinet_membership:
-                messages.warning(
-                    message=_(
-                        'Document: %(document)s is already in '
-                        'cabinet: %(cabinet)s.'
-                    ) % {
-                        'document': instance, 'cabinet': cabinet
-                    }, request=self.request
+            if count in randomlist:
+                AccessControlList.objects.check_access(
+                    obj=cabinet, permissions=(permission_cabinet_add_document,),
+                    user=self.request.user
                 )
-            else:
-                cabinet.document_add(
-                    document=instance, _user=self.request.user
-                )
-                messages.success(
-                    message=_(
-                        'Document: %(document)s added to cabinet: '
-                        '%(cabinet)s successfully.'
-                    ) % {
-                        'document': instance, 'cabinet': cabinet
-                    }, request=self.request
-                )
+                if cabinet in cabinet_membership:
+                    messages.warning(
+                        message=_(
+                            'Document: %(document)s is already in '
+                            'cabinet: %(cabinet)s.'
+                        ) % {
+                            'document': instance, 'cabinet': cabinet
+                        }, request=self.request
+                    )
+                else:
+                    cabinet.document_add(
+                        document=instance, _user=self.request.user
+                    )
+                    messages.success(
+                        message=_(
+                            'Document: %(document)s added to cabinet: '
+                            '%(cabinet)s successfully.'
+                        ) % {
+                            'document': instance, 'cabinet': cabinet
+                        }, request=self.request
+                    )
+            count += 1
 
 
 class DocumentRemoveFromCabinetView(MultipleObjectFormActionView):
